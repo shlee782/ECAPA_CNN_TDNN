@@ -45,6 +45,11 @@ python train_speaker_embeddings.py hparams/train_ecapa_cnn_tdnn.yaml --data_fold
 
 ### Testing
 
+Specify the location of the checkpoint file for the embedding model in the following line of the 'speaker_verification_cosine.py' file:
+```
+pretrain = Pretrainer(collect_in='model_local', loadables={'model': params["embedding_model"]}, paths={'model': '(directory)/embdding_moel.ckpt'})
+```
+
 To test, run:
 ```
 python speaker_verification_cosine.py hparams/verification_ecapa_cnn_tdnn.yaml --data_folder="my_folder"
