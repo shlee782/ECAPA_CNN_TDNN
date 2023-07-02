@@ -28,24 +28,31 @@ docker pull gastron/speechbrain-ci
 
 ## Usage
 
+### Data preparation
+
+Download the VoxCelb dataset from https://mm.kaist.ac.kr/datasets/voxceleb/.
+
+Place all the files in a folder named 'wav'.
+Create another folder and name it 'my_folder' (or any desired name).
+Move the 'wav' folder into the 'my_folder' folder.
+
 ### Training
 
-For training, run:
+To train, run:
 ```
-python train_speaker_embeddings.py hparams/train_ecapa_cnn_tdnn.yaml --data_folder="my data"
-```
-
-### Test
-
-For test, run:
-```
-python speaker_verification_cosine.py hparams/verification_ecapa_cnn_tdnn.yaml --data_folder="my data"
+python train_speaker_embeddings.py hparams/train_ecapa_cnn_tdnn.yaml --data_folder="my_folder"
 ```
 
+### Testing
+
+To test, run:
+```
+python speaker_verification_cosine.py hparams/verification_ecapa_cnn_tdnn.yaml --data_folder="my_folder"
+```
 
 
 ## Acknolwedgement
 
-This code is heavily based on the SpeechBrain's recipe of ECAPA-TDNN.
+This code heavily relies on the SpeechBrain's recipe of ECAPA-TDNN.
 
 I would like to acknowledge their contributions and the use of their code as a foundation for this project.
