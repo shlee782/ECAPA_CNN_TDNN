@@ -9,7 +9,7 @@ It works based on [SpeechBrain](https://github.com/speechbrain/speechbrain), an 
 
 ## Performance
 
-The VoxCeleb2 dataset (5,944 speakers) was used for training. (Data augmentation was skipped due to limited computational resources. I plan to update the results with data augmentation in the future.) 
+The VoxCeleb2 dataset (5,944 speakers) was used for training. (Data augmentation was skipped due to limited computational resources. I plan to update the results with data augmentation in the future.) The number of the training epochs were set to 5.
 
 When the VoxCeleb1-O dataset (40 speakers) was used for testing, the following speaker verification results were obtained:
 |  Architecture  |    EER (%)  | minDCF |
