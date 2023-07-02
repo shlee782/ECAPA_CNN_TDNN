@@ -30,11 +30,10 @@ docker pull gastron/speechbrain-ci
 
 ### Data preparation
 
-Download the VoxCelb dataset from https://mm.kaist.ac.kr/datasets/voxceleb/.
-
-Place all the files in a folder named 'wav'.
-Create another folder and name it 'my_folder' (or any desired name).
-Move the 'wav' folder into the 'my_folder' folder.
+1. Download the VoxCelb dataset from https://mm.kaist.ac.kr/datasets/voxceleb/.
+2. Place all the files in a folder named 'wav'.
+3. Create another folder and name it 'my_folder' (or any desired name).
+4. Move the 'wav' folder into the 'my_folder' folder.
 
 ### Training
 
