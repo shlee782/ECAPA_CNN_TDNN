@@ -2,10 +2,11 @@
 
 This project is a reimplementation of [ECAPA CNN-TDNN](https://arxiv.org/pdf/2104.02370.pdf)-based speaker verification.
 
-It works based on [SpeechBrain](https://github.com/speechbrain/speechbrain), an open-source AI speech toolkit built on PyTorch.
+It was created based on [SpeechBrain](https://github.com/speechbrain/speechbrain), an open-source AI speech toolkit built on PyTorch.
 
 ## Introduction
 
+In speaker verification, the system compares the voice characteristics of a speaker against a claimed identity to either accept or reject the claim.
 
 ## Performance
 
@@ -13,8 +14,8 @@ The VoxCeleb2 dataset (5,994 speakers) was used for training. (Data augmentation
 
 When the VoxCeleb1-O dataset (40 speakers) was used for testing, the following speaker verification results were obtained:
 |  Architecture  |    EER (%)  | minDCF |
-|:--------------:|:-----------:| ------:|
-|   ECAPA-TDNN   |             |        |
+|:--------------:|:-----------:|:------:|
+|   ECAPA-TDNN   |     1.57    |  0.15  |
 | ECAPA CNN-TDNN |             |        |
 
 ## Requirements
@@ -33,7 +34,7 @@ docker pull gastron/speechbrain-ci
 1. Download the VoxCelb dataset from https://mm.kaist.ac.kr/datasets/voxceleb/.
 2. Place all .wav files in a folder named 'wav'.
 3. Create another folder and name it 'my_folder' (or any desired name).
-4. Move the 'wav' folder into the 'my_folder' folder.
+4. Move the 'wav' folder into the 'my_folder'.
 
 ### Training
 
