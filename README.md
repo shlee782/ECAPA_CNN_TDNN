@@ -6,7 +6,13 @@ It was created based on [SpeechBrain](https://github.com/speechbrain/speechbrain
 
 ## Introduction
 
-In speaker verification, the system compares the voice characteristics of a speaker against a claimed identity to either accept or reject the claim.
+Speaker verification is the task of comparing the voice characteristics of a speaker against a claimed identity to either accept or reject the claim.
+
+ECAPA CNN-TDNN. which is one of the most powerful speaker embedding extractors to the present, is an enhanced version of ECAPA-TDNN.
+
+It is formed by adding **a network stem based on 2D convlutions (see Fig. 1)** to the **ECAPA-TDNN architecture (see Fig. 2)**.
+
+According to the authors, it enables to build local frequency invariant features before applying 1D convolutions, which explicitly combine the frequency positional information of the features.
 
 ## Performance
 
