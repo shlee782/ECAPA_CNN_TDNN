@@ -10,11 +10,13 @@ Speaker verification is the task of comparing the voice characteristics of a spe
 
 ECAPA CNN-TDNN. which is one of the most powerful speaker embedding extractors to the present, is an enhanced version of ECAPA-TDNN.
 
-It is formed by adding *a network stem based on 2D convlutions (see Fig. 1)* to the *ECAPA-TDNN architecture (see Fig. 2)*.
+It is formed by adding *a network stem based on 2D convolutions (see the following left figure)* to the *ECAPA-TDNN architecture (see the following right figure)*.
 
-![2Dconv_stem](./images/2Dconv_stem.png]
-![2Dconv_stem](./images/ECAPA_TDNN.png]
-
+<p align="center">
+  <img src="./images/2Dconv_stem.png" alt="2D convolutional stem"/ width=250>
+  <img src="./images/ECAPA-TDNN.png" alt="ECAPA-TDNN architecture"/ width=300>
+</p>
+  
 According to the authors, it enables to build local frequency invariant features before applying 1D convolutions, which explicitly combine the frequency positional information of the features.
 
 ## Performance
