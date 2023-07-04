@@ -708,7 +708,7 @@ class ECAPA_CNN_TDNN(torch.nn.Module):
     Example
     -------
     >>> input_feats = torch.rand([5, 120, 80])
-    >>> compute_embedding = ECAPA_CNN_TDNN(120, lin_neurons=192)
+    >>> compute_embedding = ECAPA_CNN_TDNN(int(128*80/4), lin_neurons=192)
     >>> outputs = compute_embedding(input_feats)
     >>> outputs.shape
     torch.Size([5, 1, 192])
@@ -795,7 +795,7 @@ class ECAPA_CNN_TDNN(torch.nn.Module):
         x = x.transpose(-1, 1)
         for layer in self.blocks:
             x = layer(x)
-        x = x.view(x.shape[0], -1, x.shape[-1]).transpose(-1, 1) # check!!
+        x = x.view(x.shape[0], x.shape[-1], -1)
         x = self.ecapatdnn(x)
         return x
         
