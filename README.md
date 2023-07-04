@@ -12,11 +12,10 @@ The speaker's identity can be verified by comparing the speaker embeddings of th
 
 ECAPA CNN-TDNN, which is one of the most powerful speaker embedding extractors to the present, is an enhanced version of [ECAPA-TDNN](https://arxiv.org/pdf/2005.07143.pdf).
 
-It is formed by adding *a 2D convolution-based network stem (see the following left figure)* to the *ECAPA-TDNN architecture (see the following right figure)*.
+It is formed by adding a 2D convolution-based network stem to the ECAPA-TDNN architecture (see the following figure).
 
 <p align="center">
   <img src="./images/2Dconv_stem.png" alt="2D convolutional stem"/ width=250>
-  <img src="./images/ECAPA-TDNN.png" alt="ECAPA-TDNN architecture"/ width=300>
 </p>
   
 According to the authors, it enables building local frequency invariant features before applying 1D convolutions, which explicitly combine the frequency positional information of the features.
