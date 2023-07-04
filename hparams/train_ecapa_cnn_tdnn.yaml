@@ -72,7 +72,7 @@ embedding_model: !new:models.ECAPA_CNN_TDNN.ECAPA_CNN_TDNN
     attention_channels: 128
     lin_neurons: 192
 
-classifier: !new:speechbrain.lobes.models.ECAPA_CNN_TDNN.Classifier
+classifier: !new:models.ECAPA_CNN_TDNN.Classifier
     input_size: 192
     out_neurons: !ref <out_n_neurons>
 
