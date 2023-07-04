@@ -10,7 +10,7 @@ Speaker verification is the task of comparing the voice characteristics of a spe
 
 The speaker's identity can be verified by comparing the speaker embeddings of the enrollment and test recordings.
 
-ECAPA CNN-TDNN, which is one of the most powerful speaker embedding extractors to the present, is an enhanced version of ECAPA-TDNN.
+ECAPA CNN-TDNN, which is one of the most powerful speaker embedding extractors to the present, is an enhanced version of [ECAPA-TDNN](https://arxiv.org/pdf/2005.07143.pdf).
 
 It is formed by adding *a 2D convolution-based network stem (see the following left figure)* to the *ECAPA-TDNN architecture (see the following right figure)*.
 
@@ -26,10 +26,10 @@ According to the authors, it enables building local frequency invariant features
 The VoxCeleb2 dataset (5,994 speakers) was used for training. (Data augmentation was skipped due to limited computational resources. I plan to update the results with data augmentation in the future.) The number of the training epochs were set to 5.
 
 When the VoxCeleb1-O dataset (40 speakers) was used for testing, the following speaker verification results were obtained:
-|  Architecture  |    EER (%)  | minDCF |
-|:--------------:|:-----------:|:------:|
-|   ECAPA-TDNN   |     1.57    |  0.15  |
-| ECAPA CNN-TDNN |             |        |
+|  Architecture           |    EER (%)  | minDCF |
+|:-----------------------:|:-----------:|:------:|
+|   ECAPA-TDNN (C=2048)   |     1.57    |  0.15  |
+| ECAPA CNN-TDNN (C=2048) |             |        |
 
 ## Requirements
 
@@ -71,6 +71,6 @@ python speaker_verification_cosine.py hparams/verification_ecapa_cnn_tdnn.yaml -
 
 ## Acknolwedgement
 
-This code heavily relies on the SpeechBrain's recipe of ECAPA-TDNN.
+This code heavily relies on [the SpeechBrain's recipe of VoxCeleb](https://github.com/speechbrain/speechbrain/tree/develop/recipes/VoxCeleb).
 
 I would like to acknowledge their contributions and the use of their code as a foundation for this project.
