@@ -795,7 +795,7 @@ class ECAPA_CNN_TDNN(torch.nn.Module):
         x = x.transpose(-1, 1)
         for layer in self.blocks:
             x = layer(x)
-        x = x.view(x.shape[0], x.shape[-1], -1).transpose(1, -1)
+        x = x.view(x.shape[0], x.shape[-1], -1)
         x = self.ecapatdnn(x)
         return x
         
