@@ -69,14 +69,6 @@ embedding_model: !new:speechbrain.lobes.models.ECAPA_CNN_TDNN.ECAPA_CNN_TDNN
     groups: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     attention_channels: 128
     lin_neurons: 192
-# embedding_model: !new:speechbrain.lobes.models.ECAPA_CNN_TDNN.ECAPA_CNN_TDNN
-#     input_size: 2560
-#     channels: [128, 128, 128, 128, 1024, 1024, 1024, 1024, 3072]
-#     kernel_sizes: [3, 3, 3, 3, 5, 3, 3, 3, 1]
-#     dilations: [1, 1, 1, 1, 1, 2, 3, 4, 1]
-#     groups: [1, 1, 1, 1, 1, 1, 1, 1, 1]
-#     attention_channels: 128
-#     lin_neurons: 192
 
 pretrainer: !new:speechbrain.utils.parameter_transfer.Pretrainer
     collect_in: !ref <save_folder>
