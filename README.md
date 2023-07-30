@@ -27,8 +27,8 @@ The VoxCeleb2 dataset (5,994 speakers) was used for training. (Data augmentation
 When the VoxCeleb1-O dataset (40 speakers) was used for testing, the following speaker verification results were obtained:
 |  Architecture           |    EER (%)  | minDCF |
 |:-----------------------:|:-----------:|:------:|
-|   ECAPA-TDNN (C=2048)   |     1.73    | 0.1620 |
-| ECAPA CNN-TDNN (C=2048) |     1.57    | 0.1485 |
+|   ECAPA-TDNN (C=2048)   |     1.92    | 0.2038 |
+| ECAPA CNN-TDNN (C=2048) |     1.35    | 0.1401 |
 
 ## Requirements
 
