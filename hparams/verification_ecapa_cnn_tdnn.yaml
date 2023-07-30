@@ -63,7 +63,7 @@ mean_var_norm: !new:speechbrain.processing.features.InputNormalization
 
 embedding_model: !new:models.ECAPA_CNN_TDNN.ECAPA_CNN_TDNN
     input_size: 2560
-    channels: [128, 128, 128, 128, 2048, 2048, 2048, 2048, 2048, 8192]
+    channels: [128, 128, 128, 128, 2048, 2048, 2048, 2048, 2048, 1536]
     kernel_sizes: [3, 3, 3, 3, 5, 3, 3, 3, 3, 1]
     dilations: [1, 1, 1, 1, 1, 2, 3, 4, 5, 1]
     groups: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
