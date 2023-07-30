@@ -5,6 +5,8 @@ Authors
 """
 
 # import os
+from einops import rearrange
+
 import torch  # noqa: F401
 import torch.nn as nn
 import torch.nn.functional as F
@@ -13,83 +15,72 @@ from speechbrain.nnet.CNN import Conv1d as _Conv1d
 from speechbrain.nnet.normalization import BatchNorm1d as _BatchNorm1d
 from speechbrain.nnet.linear import Linear
 
-from speechbrain.nnet.CNN import Conv2d as _Conv2d
-from speechbrain.nnet.normalization import BatchNorm2d as _BatchNorm2d
+from speechbrain.nnet.CNN import Conv2d as _Conv2d	
+# from speechbrain.nnet.normalization import BatchNorm2d as _BatchNorm2d
 
 # Skip transpose as much as possible for efficiency
 class Conv2d(_Conv2d):
     """2D convolution. Skip transpose is used to improve efficiency."""
-
+    
     def __init__(self, *args, **kwargs):
         super().__init__(skip_transpose=True, *args, **kwargs)
-
-
-class BatchNorm2d(nn.Module):
-    """Applies 2d batch normalization to the input tensor.
-
-    Arguments
-    ---------
-    input_shape : tuple
-        The expected shape of the input. Alternatively, use ``input_size``.
-    input_size : int
-        The expected size of the input. Alternatively, use ``input_shape``.
-    eps : float
-        This value is added to std deviation estimation to improve the numerical
-        stability.
-    momentum : float
-        It is a value used for the running_mean and running_var computation.
-    affine : bool
-        When set to True, the affine parameters are learned.
-    track_running_stats : bool
-        When set to True, this module tracks the running mean and variance,
-        and when set to False, this module does not track such statistics.
-
-    Example
-    -------
-    >>> input = torch.randn(100, 10, 5, 20)
-    >>> norm = BatchNorm2d(input_shape=input.shape)
-    >>> output = norm(input)
-    >>> output.shape
-    torch.Size([100, 10, 5, 20])
-    """
-
-    def __init__(
-        self,
-        input_shape=None,
-        input_size=None,
-        eps=1e-05,
-        momentum=0.1,
-        affine=True,
-        track_running_stats=True,
-    ):
-        super().__init__()
-
-        if input_shape is None and input_size is None:
-            raise ValueError("Expected input_shape or input_size as input")
-
-        if input_size is None:
-            input_size = input_shape[-1]
-
-        self.norm = nn.BatchNorm2d(
-            input_size,
-            eps=eps,
-            momentum=momentum,
-            affine=affine,
-            track_running_stats=track_running_stats,
-        )
-
-    def forward(self, x):
-        """Returns the normalized input tensor.
-
-        Arguments
-        ---------
-        x : torch.Tensor (batch, channel2, channel1, time)
-            input to normalize. 4d tensors are expected.
-        """
-        x_n = self.norm(x)
-
+        
+class BatchNorm2d(nn.Module):	
+    """Applies 2d batch normalization to the input tensor.	
+    Arguments	
+    ---------	
+    input_shape : tuple	
+        The expected shape of the input. Alternatively, use ``input_size``.	
+    input_size : int	
+        The expected size of the input. Alternatively, use ``input_shape``.	
+    eps : float	
+        This value is added to std deviation estimation to improve the numerical	
+        stability.	
+    momentum : float	
+        It is a value used for the running_mean and running_var computation.	
+    affine : bool	
+        When set to True, the affine parameters are learned.	
+    track_running_stats : bool	
+        When set to True, this module tracks the running mean and variance,	
+        and when set to False, this module does not track such statistics.	
+    Example	
+    -------	
+    >>> input = torch.randn(100, 10, 5, 20)	
+    >>> norm = BatchNorm2d(input_shape=input.shape)	
+    >>> output = norm(input)	
+    >>> output.shape	
+    torch.Size([100, 10, 5, 20])	
+    """	
+    def __init__(	
+        self,	
+        input_shape=None,	
+        input_size=None,	
+        eps=1e-05,	
+        momentum=0.1,	
+        affine=True,	
+        track_running_stats=True,	
+    ):	
+        super().__init__()	
+        if input_shape is None and input_size is None:	
+            raise ValueError("Expected input_shape or input_size as input")	
+        if input_size is None:	
+            input_size = input_shape[-1]	
+        self.norm = nn.BatchNorm2d(	
+            input_size,	
+            eps=eps,	
+            momentum=momentum,	
+            affine=affine,	
+            track_running_stats=track_running_stats,	
+        )	
+    def forward(self, x):	
+        """Returns the normalized input tensor.	
+        Arguments	
+        ---------	
+        x : torch.Tensor (batch, channel2, channel1, time)	
+            input to normalize. 4d tensors are expected.	
+        """	
+        x_n = self.norm(x)	
         return x_n
-
 
 class Conv2dBlock(nn.Module):
     """An implementation of a 'Conv 2D + ReLU + BN' block included in ECAPA CNN-TDNN.
@@ -141,7 +132,7 @@ class Conv2dBlock(nn.Module):
             groups=groups,
         )
         self.activation = activation()
-        self.norm = BatchNorm2d(input_size = out_channels)
+        self.norm = BatchNorm2d(input_size=out_channels)
     
     def forward(self, x):
         """ Processes the input tensor x and returns an output tensor."""
@@ -179,10 +170,10 @@ class Conv2dResBlock(nn.Module):
         super(Conv2dResBlock, self).__init__()
         self.residual_block = nn.Sequential(
             Conv2d(in_channels=in_channels, out_channels=mid_channels, kernel_size=3),
-            nn.BatchNorm2d(mid_channels),
+            BatchNorm2d(input_size=mid_channels),
             nn.ReLU(),
             Conv2d(in_channels=mid_channels, out_channels=out_channels, kernel_size=3),
-            nn.BatchNorm2d(out_channels),
+            BatchNorm2d(input_size=out_channels),
         )
         self.relu = nn.ReLU()
 
@@ -627,7 +618,7 @@ class ECAPA_TDNN(torch.nn.Module):
 
         # Multi-layer feature aggregation
         self.mfa = TDNNBlock(
-            channels[-1],
+            channels[-2]*(len(channels) - 2),
             channels[-1],
             kernel_sizes[-1],
             dilations[-1],
@@ -795,7 +786,7 @@ class ECAPA_CNN_TDNN(torch.nn.Module):
         x = x.transpose(-1, 1)
         for layer in self.blocks:
             x = layer(x)
-        x = x.view(x.shape[0], x.shape[-1], -1)
+        x = rearrange(x, 'b c1 c2 t -> b t (c1 c2)')
         x = self.ecapatdnn(x)
         return x
         
