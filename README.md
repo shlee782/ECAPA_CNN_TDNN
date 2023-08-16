@@ -32,7 +32,10 @@ When the VoxCeleb1-O dataset (40 speakers) was used for testing, the following s
 
 ## Requirements
 
-This project follows the requirements of [SpeechBrain](https://github.com/speechbrain/speechbrain).
+To install the necessary requirements, execute the following command:
+```
+pip install -r requirements.txt
+```
 
 For your information, I used the Docker image called [gastron/speechbrain-ci](https://hub.docker.com/r/gastron/speechbrain-ci).
 ```
