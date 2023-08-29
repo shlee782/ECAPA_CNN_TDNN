@@ -146,7 +146,7 @@ def dataio_prep(hparams):
 
     datasets = [train_data, valid_data]
     label_encoder = sb.dataio.encoder.CategoricalEncoder()
-    #label_encoder.expect_len(hparams["out_n_neurons"])
+    label_encoder.expect_len(hparams["out_n_neurons"])
 
     snt_len_sample = int(hparams["sample_rate"] * hparams["sentence_len"])
 
