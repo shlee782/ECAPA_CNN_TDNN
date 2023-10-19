@@ -180,7 +180,6 @@ class Conv2dResBlock(nn.Module):
     def forward(self, x):
         """ Processes the input tensor x and returns an output tensor."""        
         out = self.residual_block(x)
-        out = out + x
         out = self.relu(out+x)
         return out
 
